@@ -4,6 +4,8 @@ resource "aws_subnet" "public-subnet-1" {
     cidr_block = "10.0.0.0/24"
     availability_zone =  "${var.availability_zones[0]}"
 
+    map_public_ip_on_launch = true
+
     tags {
         Name = "${var.project_name}-public-subnet-1"
     }
@@ -19,6 +21,7 @@ resource "aws_subnet" "public-subnet-2" {
 
     cidr_block = "10.0.1.0/24"
     availability_zone =  "${var.availability_zones[1]}"
+    map_public_ip_on_launch = true
 
     tags {
         Name = "${var.project_name}-public-subnet-2"

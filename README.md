@@ -17,9 +17,9 @@ terraform init
 
 ## Notes
 * Each time that you add a new model, you need to run
-  ```
-	terraform init
-	```
+```
+terraform init
+```
 
 ## Resources
 * [Use outputs between modules](https://github.com/hashicorp/terraform/issues/12466)
