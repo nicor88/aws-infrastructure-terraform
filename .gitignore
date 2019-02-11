@@ -7,3 +7,9 @@
 
 # .tfvars files
 *.tfvars
+
+# AWS Lambda
+.packed_lambda
+
+# .idea IDE
+.idea
