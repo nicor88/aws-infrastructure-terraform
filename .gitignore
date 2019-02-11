@@ -9,7 +9,7 @@
 *.tfvars
 
 # AWS Lambda
-.packed_lambda
+.packaged_lambda
 
 # .idea IDE
 .idea
