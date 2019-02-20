@@ -19,13 +19,6 @@ module "lambda_example" {
   vpc_id = "${module.network.vpc_id}"
 }
 
-module "ecs" {
-  source = "./ecs"
-
-  project_name = "${var.project_name}"
-  stage = "${var.stage}"
-}
-
 module "postgres" {
   source = "./postgres"
 
