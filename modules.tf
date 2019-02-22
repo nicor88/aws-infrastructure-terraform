@@ -15,8 +15,6 @@ module "lambda" {
 
   project_name = "${var.project_name}"
   stage = "${var.stage}"
-
-  vpc_id = "${module.network.vpc_id}"
 }
 
 module "postgres" {

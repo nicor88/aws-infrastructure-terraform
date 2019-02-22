@@ -1,10 +1,9 @@
 variable "project_name" {}
 variable "stage" {}
-variable "vpc_id" {}
 
 data "archive_file" "zip" {
-  type        = "zip"
-  source_file = "lambda_example/source_code/lambda_example.py"
+  type = "zip"
+  source_file = "lambda/source_code/lambda_example.py"
   output_path = ".packaged_lambda/lambda_example.zip"
 }
 
@@ -43,7 +42,6 @@ resource "aws_lambda_function" "lambda_example" {
   environment {
     variables = {
       STAGE = "${var.stage}"
-      VPC_ID = "${var.vpc_id}"
     }
   }
 }
