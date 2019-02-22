@@ -21,11 +21,11 @@ resource "aws_s3_bucket" "terraform-remote-state" {
   }
 }
 
-# uncomment this section when initializing terraform
-terraform {
+# uncomment this section when initializing terraform for the first time
+ terraform {
   backend "s3" {
-  encrypt = false
-  bucket = "nicor-terraform-state"
-  key = "terraform_state.tfstate"
- }
+    encrypt = false
+    bucket = "nicor-terraform-state"
+    key = "terraform_state.tfstate"
+  }
 }

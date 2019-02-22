@@ -16,15 +16,27 @@ terraform init
 ```
 
 ## Notes
-* Each time that you add a new model, you need to run
+Each time that you add a new module, you need to run
 ```
 terraform init
 ```
 
-## Outputs
+## Modules
+
+### Create Infrastructure
+<pre>
+terraform apply --target module.my_module
+</pre>
+
+### Destroy
+<pre>
+terraform destroy --target module.my_module
+</pre>
+
+### Outputs
 To retrieve the outputs from a specific module run:
 <pre>
-terraform output -module=postgres
+terraform output -module=my_module
 </pre>
 
 ## Resources

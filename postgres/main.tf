@@ -7,7 +7,10 @@ variable "subnet2" {}
 variable "postgres_public_sg" {}
 
 resource "random_string" "password" {
-  length = 16  
+    length = 32
+    upper = true
+    number = true
+    special = false  
 }
 
 resource "aws_db_subnet_group" "subnet_group" {

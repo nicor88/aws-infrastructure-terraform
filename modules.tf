@@ -10,8 +10,8 @@ module "network" {
 }
 
 
-module "lambda_example" {
-  source = "./lambda_example"
+module "lambda" {
+  source = "./lambda"
 
   project_name = "${var.project_name}"
   stage = "${var.stage}"
