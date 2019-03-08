@@ -1,16 +1,13 @@
-variable "project_name" {
-   default = "nicor"
-}
-
-variable "stage" {
-   default = "dev"
-}
-
-variable "base_cidr_block" {
-   default = "10.0.0.0"
-}
+variable "aws_region" {}
 
 variable "availability_zones" {
    type    = "list"
-   default = ["us-east-1a", "us-east-1b"]
 }
+
+variable "project" {}
+
+variable "stage" {}
+
+variable "s3_state_bucket" {}
+
+variable "s3_state_file" {}

@@ -1,0 +1,6 @@
+aws_region="us-east-1"
+availability_zones=["us-east-1a", "us-east-1b", "us-east-1c"]
+stage="dev"
+project="base"
+s3_state_bucket="your_s3_bucket"
+s3_state_file="dev/base/state.tfstate"

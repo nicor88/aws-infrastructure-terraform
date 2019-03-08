@@ -3,5 +3,5 @@ output "postgres_password" {
 }
 
 output "postgres_endpoint" {
-  value = "${aws_db_instance.instance.endpoint}"
+  value = "${aws_db_instance.this.endpoint}"
 } 

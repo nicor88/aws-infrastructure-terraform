@@ -1,31 +1,19 @@
-# provider
 provider "aws" {
-  region = "us-east-1"
+  region = "${var.aws_region}"
   version = "~> 1.52"
 }
 
-# setup S3 bucket for Remote state
-resource "aws_s3_bucket" "terraform-remote-state" {
-  bucket = "nicor-terraform-state"
-
-  versioning {
-    enabled = true
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-
-  tags {
-    Name = "S3 Remote Terraform State Store"
-  }
+terraform {
+  required_version = ">= 0.11.7"
+  backend "s3" {}
 }
 
-# uncomment this section when initializing terraform for the first time
- terraform {
-  backend "s3" {
-    encrypt = false
-    bucket = "nicor-terraform-state"
-    key = "terraform_state.tfstate"
+data "terraform_remote_state" "s3_remote_state" {
+  backend = "s3"
+
+  config {
+    bucket = "${var.s3_state_bucket}"
+    key    = "${var.stage}/${var.project}/state.tfstate}"
+    region = "${var.aws_region}"
   }
 }

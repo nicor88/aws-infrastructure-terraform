@@ -1,42 +1,45 @@
 # aws-infrastructure-terraform
 AWS Infrastructure provisioned using Terraform
 
+## Requirements
+* Install terraform
+* Configure your aws credentials
+* Setup the environenment variable `export AWS_PROFILE=your_profile`
+* Run `cp tfvars.dist dev.tfvars``
+* S3 Bucket manually created to use as Terraform backend
+
 ## Setup
-Inside the file provider.tf comment the last section, 
-regarding the backend then run 
-
+Add the S3 bucket inside the Makefile and inside `dev.tfvars`. The init the project running:
 ```
-terraform init
-terraform apply
+make init
 ```
 
-After that uncomment the backend section inside provider.tf, and run again
+## Plan
 ```
-terraform init
+make plan
 ```
 
-## Notes
-Each time that you add a new module, you need to run
+## Apply
 ```
-terraform init
+make apply
 ```
 
 ## Modules
 
-### Create Infrastructure
-<pre>
-terraform apply --target module.my_module
-</pre>
+Each time that you add a new module, you need to run
+```
+make init
+```
 
-### Destroy
+### Destroy Single Module
 <pre>
-terraform destroy --target module.my_module
+make destroy MODULE=postgres_example
 </pre>
 
 ### Outputs
 To retrieve the outputs from a specific module run:
 <pre>
-terraform output -module=my_module
+make module_output MODULE=postgres_example
 </pre>
 
 ## Resources
