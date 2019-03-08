@@ -5,11 +5,11 @@ AWS Infrastructure provisioned using Terraform
 * Install terraform
 * Configure your aws credentials
 * Setup the environenment variable `export AWS_PROFILE=your_profile`
-* Run `cp tfvars.dist dev.tfvars``
+* Run `cp tfvars.dist dev.tfvars`
 * S3 Bucket manually created to use as Terraform backend
 
 ## Setup
-Add the S3 bucket inside the Makefile and inside `dev.tfvars`. The init the project running:
+Add the S3 bucket name inside the Makefile and inside `dev.tfvars`. Then init the project running:
 ```
 make init
 ```
