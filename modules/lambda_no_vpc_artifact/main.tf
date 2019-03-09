@@ -1,5 +1,5 @@
 resource "aws_iam_role" "this" {
-  name = "${var.project}-${var.stage}-${var.name}-lambda"
+  name = "${var.stage}-${var.name}-lambda"
 
   assume_role_policy = <<EOF
 {
@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_policy" "logs" {
-  name        = "${var.project}-${var.stage}-${var.name}-logs"
+  name        = "${var.stage}-${var.name}-logs"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -42,7 +42,7 @@ resource "aws_iam_role_policy_attachment" "this" {
 }
 
 resource "aws_lambda_function" "this" {
-  function_name = "${var.project}-${var.stage}-${var.name}"
+  function_name = "${var.stage}-${var.name}"
   description = "${var.description}"
   handler = "lambda.lambda_handler"
   runtime = "python3.6"

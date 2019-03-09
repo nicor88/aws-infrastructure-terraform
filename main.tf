@@ -33,7 +33,6 @@ module "base_network" {
 module "lambda_example" {
   source = "./modules/lambda_no_vpc_source_code"
 
-  project = "${var.project}"
   stage = "${var.stage}"
   name = "example"
   description = "Just a sample lambda"
@@ -43,7 +42,6 @@ module "lambda_example" {
 module "lambda_example_2" {
   source = "./modules/lambda_no_vpc_artifact"
 
-  project = "${var.project}"
   stage = "${var.stage}"
   name = "example-2"
   description = "Just a sample lambda"

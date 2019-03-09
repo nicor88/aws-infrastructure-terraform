@@ -1,5 +1,3 @@
-variable "project" {}
-
 variable "stage" {}
 
 variable "name" {}
