@@ -47,3 +47,27 @@ module "lambda_example_2" {
   description = "Just a sample lambda"
   source_artifact = ".packaged_lambda/example_2.zip"
 }
+
+# example how to extend lambda role policy
+resource "aws_iam_policy" "s3" {
+  name        = "${var.stage}-example-2-s3"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "attach_policy_to_example_2_role" {
+  role       = "${module.lambda_example_2.lambda_role_name}"
+  policy_arn = "${aws_iam_policy.s3.arn}"
+}
