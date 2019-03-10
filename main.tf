@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 module "base_network" {
   source = "./modules/network"
 
@@ -70,4 +72,36 @@ EOF
 resource "aws_iam_role_policy_attachment" "attach_policy_to_example_2_role" {
   role       = "${module.lambda_example_2.lambda_role_name}"
   policy_arn = "${aws_iam_policy.s3.arn}"
+}
+
+module "dynamo_measures" {
+  source = "./modules/dynamodb"
+
+  aws_account_id = "${data.aws_caller_identity.current.account_id}"
+  table_name = "measures"
+  stage = "${var.stage}"
+
+  primary_key = "device_id"
+  primary_key_type = "S"
+
+  # you can pass only attributes that are going to be used as sort keys
+  # sort_key = "updated_at"
+  # attributes = [{
+  #   name = "updated_at" 
+  #   type = "S"
+  # }]
+
+  enable_recovery = "true"
+  
+  read_capacity = "1"
+  read_max_capacity = "20"
+  read_percentage_scaling = "50"
+  read_scale_in_cooldown = "30" #seconds
+  read_scale_out_cooldown = "30" #seconds
+
+  write_capacity = "1"
+  write_max_capacity = "20"
+  write_percentage_scaling = "50"
+  write_scale_in_cooldown = "30" #seconds
+  write_scale_out_cooldown = "30" #seconds
 }
