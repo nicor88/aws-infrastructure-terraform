@@ -72,7 +72,7 @@ resource "aws_subnet" "public_subnet_3" {
     vpc_id = "${aws_vpc.this.id}"
 
     cidr_block = "${cidrhost(var.vpc_cidr_block,256 * 3)}/24"
-    availability_zone =  "${var.availability_zones[1]}"
+    availability_zone =  "${var.availability_zones[2]}"
 
     map_public_ip_on_launch = true
 
