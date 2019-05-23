@@ -1,5 +1,6 @@
 data "aws_caller_identity" "current" {}
 
+# TODO this needs to be refactored
 module "base_network" {
   source = "./modules/network"
 
@@ -41,14 +42,15 @@ module "lambda_example" {
   source_file_path = "lambdas/example/lambda.py"
 }
 
-module "lambda_example_2" {
-  source = "./modules/lambda_no_vpc_artifact"
-
-  stage = "${var.stage}"
-  name = "example-2"
-  description = "Just a sample lambda"
-  source_artifact = ".packaged_lambda/example_2.zip"
-}
+# retrieve the artifact from a local directory
+//module "lambda_example_2" {
+//  source = "./modules/lambda_no_vpc_artifact"
+//
+//  stage = "${var.stage}"
+//  name = "example-2"
+//  description = "Just a sample lambda"
+//  source_artifact = ".packaged_lambda/example_2.zip"
+//}
 
 # example how to extend lambda role policy
 resource "aws_iam_policy" "s3" {
@@ -70,7 +72,7 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "attach_policy_to_example_2_role" {
-  role       = "${module.lambda_example_2.lambda_role_name}"
+  role       = "${module.lambda_example.lambda_role_name}"
   policy_arn = "${aws_iam_policy.s3.arn}"
 }
 

@@ -20,9 +20,12 @@ apply:
 	@terraform apply \
 		-input=false \
 		-refresh=true \
-		-var-file=$(STAGE).tfvars 
+		-var-file=$(STAGE).tfvars
 
 destroy:
+	@terraform destroy -var-file=$(STAGE).tfvars
+
+destroy-module:
 	@terraform destroy --target module.$(MODULE) \
 		-input=false \
 		-refresh=true \
@@ -30,3 +33,6 @@ destroy:
 
 module_output:
 	@terraform output -module=$(MODULE)
+
+create-tf-vars:
+	cp tfvars.dist $(STAGE).tfvars
